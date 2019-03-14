@@ -1,5 +1,20 @@
-// PLEASE DON'T change function name
 module.exports = function makeExchange(currency) {
-    // Your code goes here!
-    // Return an object containing the minimum number of coins needed to make change
-}
+    var moneyArrayMinMax= {};
+        if (currency <= 0){
+            return moneyArrayMinMax;
+        } else if (currency > 10000 ){
+            return moneyArrayMinMax = {error: "You are rich, my friend! We don't have so much coins for exchange"};
+        }
+
+        var moneys = [ { key: "H", number: 50}, { key: "Q", number: 25}, { key: "D", number: 10}, { key: "N", number: 5}, { key: "P", number: 1}];
+
+        moneys.forEach(function(element) {
+            var param = Math.floor(currency / element.number);
+            if (param > 0) {
+                moneyArrayMinMax[element.key] = param;
+            }
+            currency -= param * element.number;
+        });
+
+        return moneyArrayMinMax;
+ }
